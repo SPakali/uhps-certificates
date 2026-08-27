@@ -367,6 +367,33 @@ var STATE = {
 };
 var HAS_SCRIPT_RUN = (typeof google !== 'undefined' && google.script && google.script.run);
 var IS_STANDALONE_PREVIEW = !HAS_SCRIPT_RUN && !APPS_SCRIPT_API_URL;
+var JSONP_COUNTER = 0;
+
+/**
+ * JSONP call — used only when hosted outside Apps Script (e.g. GitHub
+ * Pages). Loads a <script> tag pointed at the Apps Script GET endpoint;
+ * the response is executable JS that calls our unique callback with the
+ * result. This is not an XHR/fetch, so it is never subject to CORS —
+ * which is what makes it work when a direct POST fetch() does not.
+ */
+function jsonpCall(fnName, args){
+  return new Promise(function(resolve,reject){
+    var cbName = 'uhpsCb_' + (++JSONP_COUNTER) + '_' + Date.now();
+    var cleanup = function(){
+      delete window[cbName];
+      if(script && script.parentNode) script.parentNode.removeChild(script);
+      clearTimeout(timer);
+    };
+    window[cbName] = function(result){ cleanup(); resolve(result); };
+    var payload = JSON.stringify({ action: fnName, args: args });
+    var url = APPS_SCRIPT_API_URL + '?callback=' + encodeURIComponent(cbName) + '&payload=' + encodeURIComponent(payload);
+    var script = document.createElement('script');
+    script.src = url;
+    script.onerror = function(){ cleanup(); reject(new Error('Unable to reach the server. Check your internet connection and that APPS_SCRIPT_API_URL is correct.')); };
+    var timer = setTimeout(function(){ cleanup(); reject(new Error('The server took too long to respond. Please try again.')); }, 20000);
+    document.body.appendChild(script);
+  });
+}
 
 function gs(fnName){
   var args = Array.prototype.slice.call(arguments,1);
@@ -376,12 +403,7 @@ function gs(fnName){
       return;
     }
     if(APPS_SCRIPT_API_URL){
-      // text/plain avoids a CORS preflight request, which Apps Script does not handle.
-      fetch(APPS_SCRIPT_API_URL, {
-        method:'POST',
-        headers:{'Content-Type':'text/plain;charset=utf-8'},
-        body: JSON.stringify({ action: fnName, args: args })
-      }).then(function(r){ return r.json(); }).then(resolve).catch(reject);
+      jsonpCall(fnName,args).then(resolve).catch(reject);
       return;
     }
     reject(new Error('This file is not connected to a backend. Either open it via your Apps Script Web app URL, or set APPS_SCRIPT_API_URL near the top of the script.'));
@@ -1092,27 +1114,9 @@ function onRankChange(val){
   updatePreview();
 }
 
-/* ---- theme-aware certificate HTML (used for BOTH preview and PDF) ---- */
-var CERT_CSS_SNAPSHOT = null;
-function getCertCSS(){
-  if(CERT_CSS_SNAPSHOT) return CERT_CSS_SNAPSHOT;
-  var rules=['.certificate-paper','.c-border-outer','.c-border-inner','.c-corner','.c-content','.c-seal-top','.c-school','.c-subtitle','.c-rule','.c-title','.c-body','.c-name','.c-group-list','.c-meta','.c-footer','.c-sign','.c-sdmc','.c-certno','.c-theme-icon','.seal'];
-  var out=[];
-  for(var i=0;i<document.styleSheets.length;i++){
-    try{
-      var sheet=document.styleSheets[i];
-      var cssRules=sheet.cssRules||[];
-      for(var j=0;j<cssRules.length;j++){
-        var txt=cssRules[j].cssText||'';
-        if(rules.some(function(sel){return txt.indexOf(sel)===0 || txt.indexOf(sel+',')===0 || txt.indexOf(sel+' ')===0 || txt.indexOf(sel+'.')===0 || txt.indexOf(sel+'::')===0 || txt.indexOf(sel+':')===0;})){
-          out.push(txt);
-        }
-      }
-    }catch(e){}
-  }
-  CERT_CSS_SNAPSHOT = "@font-face{}" + out.join('\n') + "@page{size:A4 landscape;margin:0;}";
-  return CERT_CSS_SNAPSHOT;
-}
+/* ---- theme-aware certificate HTML (used for the on-screen live preview only;
+   the actual PDF is now built server-side in Code.gs from the same field
+   values, so the printed certificate always matches these rules) ---- */
 
 function buildCertificateMarkup(){
   var settings=STATE.settings;
@@ -1194,7 +1198,6 @@ function generateCertificateClick(){
   GEN.rank=rankFinal;
 
   var btn=event.target; btn.disabled=true; btn.textContent='Generating…';
-  var certHtml = '<style>'+getCertCSS()+'</style>'+buildCertificateMarkup();
   var payload={
     certType: GEN.certType,
     studentIds: GEN.studentIds,
@@ -1209,7 +1212,7 @@ function generateCertificateClick(){
     certDate: GEN.certDate,
     prefix: STATE.settings.certificate_prefix||'UHPS'
   };
-  gs('createCertificate',STATE.token,payload,certHtml).then(function(res){
+  gs('createCertificate',STATE.token,payload).then(function(res){
     btn.disabled=false; btn.textContent='Generate Certificate';
     if(!res.success){ toast(res.error,'bad'); return; }
     showSuccessPanel(res);
