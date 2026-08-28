@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UHPS Shindikurbet — Certificate Management System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Playfair+Display:wght@600;700;800&family=Great+Vibes&family=Inter:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
 <style>
 /* =====================================================================
    DESIGN TOKENS
@@ -215,41 +215,55 @@ tr:hover td{background:#fafbfd;}
 .modal-body{padding:20px 22px;}
 .modal-foot{padding:16px 22px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px;}
 
-/* ================= CERTIFICATE ================= */
+/* ================= CERTIFICATE (premium) ================= */
 .cert-outer{background:#dfe4ee;border-radius:12px;padding:22px;display:flex;justify-content:center;overflow:auto;}
 .certificate-paper{
-  width:1000px;height:707px;background:var(--parchment);position:relative;flex-shrink:0;
+  width:1000px;height:707px;position:relative;flex-shrink:0;
   font-family:'Inter',sans-serif;
   box-shadow:0 10px 40px rgba(15,26,48,.18);
+  overflow:hidden;
+  background-color:#faf7ef;
+  background-image:
+    radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.9) 0%, rgba(250,247,239,0) 62%),
+    repeating-linear-gradient(115deg, rgba(28,43,74,.025) 0px, rgba(28,43,74,.025) 1px, transparent 1px, transparent 7px);
 }
 .certificate-paper.urdu-mode .c-body, .certificate-paper.urdu-mode .c-name{direction:rtl;font-family:'Noto Nastaliq Urdu','Inter',sans-serif;}
-.c-border-outer{position:absolute;inset:16px;border:2.5px solid var(--navy-800);}
-.c-border-inner{position:absolute;inset:24px;border:1px solid var(--brass);}
-.c-corner{position:absolute;width:34px;height:34px;border:2px solid var(--brass);}
-.c-corner.tl{top:12px;left:12px;border-right:none;border-bottom:none;}
-.c-corner.tr{top:12px;right:12px;border-left:none;border-bottom:none;}
-.c-corner.bl{bottom:12px;left:12px;border-right:none;border-top:none;}
-.c-corner.br{bottom:12px;right:12px;border-left:none;border-top:none;}
-.c-content{position:absolute;inset:44px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:18px 60px 0;}
-.c-seal-top{margin-bottom:6px;}
-.c-school{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:700;color:var(--navy-900);letter-spacing:1px;margin:2px 0 0;text-transform:uppercase;}
-.c-subtitle{font-size:12px;color:var(--slate);letter-spacing:1.5px;text-transform:uppercase;margin:2px 0 10px;}
-.c-rule{width:120px;height:2px;background:var(--brass);margin:2px auto 14px;}
-.c-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--brass);margin:0 0 16px;}
-.c-body{font-size:14.5px;color:var(--ink);line-height:1.9;max-width:760px;}
-.c-name{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:38px;color:var(--navy-900);margin:8px 0;line-height:1.15;}
-.c-group-list{font-size:13px;color:var(--ink);margin-top:8px;column-count:2;column-gap:34px;text-align:left;max-width:480px;}
+.c-vignette{position:absolute;inset:0;box-shadow:inset 0 0 130px rgba(20,20,10,.10);pointer-events:none;}
+.c-frame-gold{position:absolute;inset:14px;border:1px solid #c9a24a;}
+.c-frame-navy{position:absolute;inset:19px;border:2.5px solid var(--navy-800);}
+.c-frame-gold2{position:absolute;inset:25px;border:1px solid #c9a24a;}
+.c-corner-orn{position:absolute;width:64px;height:64px;pointer-events:none;}
+.c-corner-orn svg{width:100%;height:100%;}
+.c-corner-orn.tl{top:10px;left:10px;}
+.c-corner-orn.tr{top:10px;right:10px;transform:scaleX(-1);}
+.c-corner-orn.bl{bottom:10px;left:10px;transform:scaleY(-1);}
+.c-corner-orn.br{bottom:10px;right:10px;transform:scale(-1,-1);}
+.c-watermark{position:absolute;left:50%;top:52%;width:520px;height:520px;transform:translate(-50%,-50%) rotate(-6deg);opacity:.05;pointer-events:none;}
+.c-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:46px 90px 0;}
+.c-seal-wrap{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px;}
+.c-seal-flourish{width:46px;height:14px;opacity:.75;}
+.c-seal-top{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.28), inset 0 0 0 2px rgba(255,255,255,.35);}
+.c-seal-top::before{content:'';position:absolute;inset:5px;border-radius:50%;border:1px dashed rgba(255,255,255,.6);}
+.c-seal-top svg{width:22px;height:22px;stroke:#241705;fill:none;stroke-width:1.6;position:relative;z-index:1;}
+.c-school{font-family:'Playfair Display',serif;font-weight:700;font-size:30px;color:#152244;letter-spacing:1.6px;margin:0;text-transform:uppercase;}
+.c-subtitle{font-size:11.5px;color:#6b7280;letter-spacing:2.4px;text-transform:uppercase;margin:5px 0 16px;}
+.c-title-row{display:flex;align-items:center;gap:14px;margin:0 0 22px;}
+.c-title-row .diamond{width:7px;height:7px;transform:rotate(45deg);flex-shrink:0;}
+.c-title{font-family:'Playfair Display',serif;font-weight:700;font-size:21px;letter-spacing:3.5px;text-transform:uppercase;white-space:nowrap;}
+.c-body{font-size:14.5px;color:#33302a;line-height:1.85;max-width:700px;font-family:Georgia,serif;font-style:italic;}
+.c-presented{font-size:12.5px;color:#8a8375;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px;font-family:'Inter',sans-serif;font-style:normal;}
+.c-name{font-family:'Great Vibes',cursive;font-weight:400;font-size:64px;color:#152244;margin:2px 0 10px;line-height:1.1;padding-bottom:6px;}
+.c-group-list{font-size:13px;color:#33302a;margin:4px 0 10px;column-count:2;column-gap:34px;text-align:left;max-width:460px;font-style:normal;}
 .c-group-list div{padding:2px 0;}
-.c-meta{display:flex;gap:34px;margin-top:16px;font-size:12.5px;color:var(--slate);}
-.c-footer{position:absolute;left:70px;right:70px;bottom:36px;display:flex;justify-content:space-between;align-items:flex-end;font-size:12px;}
-.c-sign{text-align:center;min-width:150px;}
-.c-sign .line{border-top:1.3px solid var(--ink);margin-bottom:5px;padding-top:5px;}
-.c-sign b{font-size:12.5px;}
-.c-sdmc{position:absolute;left:70px;right:70px;bottom:8px;text-align:center;font-size:10px;color:var(--slate-light);letter-spacing:.4px;}
-.c-certno{position:absolute;top:56px;right:60px;font-size:10.5px;color:var(--slate);}
-.c-theme-icon{position:absolute;opacity:.14;width:150px;height:150px;color:var(--navy-800);stroke:currentColor;fill:none;stroke-width:1;pointer-events:none;}
-.c-theme-icon.left{left:26px;bottom:70px;}
-.c-theme-icon.right{right:26px;top:70px;}
+.c-meta{display:flex;gap:30px;margin-top:14px;font-size:11.5px;color:#6b7280;letter-spacing:.3px;}
+.c-meta b{color:#33302a;}
+.c-footer{position:absolute;left:78px;right:78px;bottom:40px;display:flex;justify-content:space-between;align-items:flex-end;font-size:11.5px;}
+.c-sign{text-align:center;min-width:170px;}
+.c-sign .line{border-top:1px solid #c9a24a;margin-bottom:6px;padding-top:6px;}
+.c-sign b{font-size:12.5px;color:#152244;}
+.c-sdmc{position:absolute;left:78px;right:78px;bottom:14px;text-align:center;font-size:9.5px;color:#9a9488;letter-spacing:.5px;}
+.c-certno{position:absolute;top:24px;right:34px;font-size:9.5px;color:#8a8375;letter-spacing:.3px;}
+.c-verify{position:absolute;top:24px;left:34px;font-size:9px;color:#a8a296;letter-spacing:.2px;}
 
 /* form grids inside cert generator */
 .gen-form .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -260,6 +274,7 @@ tr:hover td{background:#fafbfd;}
 .member-row input{flex:1;}
 .dup-warning{background:var(--warn-bg);color:var(--warn);border-radius:8px;padding:12px 14px;font-size:13px;margin-bottom:14px;display:none;}
 .success-panel{text-align:center;padding:30px 10px;}
+
 .success-panel .seal{margin:0 auto 14px;}
 .success-panel h3{margin:0 0 4px;font-size:19px;}
 .success-panel .certno{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--brass);font-weight:700;margin:6px 0 20px;}
@@ -461,10 +476,25 @@ var CATEGORY_ICON = {
   Mathematics:'book',Computer:'book','General Achievement':'star',Other:'star'
 };
 var CATEGORY_COLOR = {
-  Sports:'#1c6b4a',Academic:'#1c2b4a',SA:'#1c2b4a',Quiz:'#5a3d99',Cultural:'#9c3d5e',
-  Arts:'#a35a1f',Drawing:'#a35a1f',Essay:'#1c2b4a',Debate:'#1c2b4a',Speech:'#9c3d5e',
-  Science:'#1d5f7a',Mathematics:'#1c2b4a',Computer:'#1c2b4a','General Achievement':'#b6862c',Other:'#b6862c'
+  Sports:'#0f5132',Academic:'#1c2b4a',SA:'#1c2b4a',Quiz:'#4a2f7a',Cultural:'#7a1f3d',
+  Arts:'#8a4b12',Drawing:'#8a4b12',Essay:'#1c2b4a',Debate:'#1c2b4a',Speech:'#7a1f3d',
+  Science:'#0d4f63',Mathematics:'#1c2b4a',Computer:'#1c2b4a','General Achievement':'#8a6215',Other:'#8a6215'
 };
+var CORNER_ORNAMENT_SVG =
+  '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+  '<path d="M4 30 C4 14 14 4 30 4" stroke="#c9a24a" stroke-width="1.4"/>'+
+  '<path d="M4 22 C4 12 12 4 22 4" stroke="#c9a24a" stroke-width="1"/>'+
+  '<circle cx="4" cy="4" r="3.4" fill="#c9a24a"/>'+
+  '<path d="M12 4c6 0 8 4 8 8M4 12c0 6 4 8 8 8" stroke="#1c2b4a" stroke-width="1"/>'+
+  '</svg>';
+var SEAL_FLOURISH_SVG =
+  '<svg viewBox="0 0 46 14" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+  '<path d="M2 7c10-8 24-8 30 0M2 7c10 8 24 8 30 0" stroke="#c9a24a" stroke-width="1"/>'+
+  '<circle cx="34" cy="7" r="1.6" fill="#c9a24a"/>'+
+  '</svg>';
+function substitutePlaceholdersClient(text, ctx){
+  return String(text||'').replace(/\{\{\s*([a-zA-Z_]+)\s*\}\}/g,function(m,key){ return ctx.hasOwnProperty(key)?ctx[key]:m; });
+}
 
 /* =====================================================================
    NAVIGATION
@@ -695,21 +725,72 @@ function removeEvent(id){
 /* =====================================================================
    VIEW: STUDENTS + PARTICIPATION TRACKER
    ===================================================================== */
+var studentSearchQ='';
+var certLookupResult=null;
 function renderStudents(){
+  studentSearchQ=''; certLookupResult=null;
   gs('getStudents',STATE.token).then(function(r){
     STATE.cache.students=r.students||[];
-    var rows=STATE.cache.students.map(function(s){
-      return '<tr><td><b>'+esc(s.StudentName)+'</b></td><td>'+esc(s.Class)+'</td><td>'+esc(s.Section||'—')+'</td><td>'+esc(s.AdmissionNumber||'—')+'</td>'+
-        '<td><button class="btn btn-ghost btn-sm" onclick="openStudentProfile(\''+s.StudentID+'\')">View Profile</button></td>'+
-        '<td><button class="icon-btn" onclick="editStudent(\''+s.StudentID+'\')">'+icon('edit')+'</button>'+adminOnly('<button class="icon-btn" onclick="removeStudent(\''+s.StudentID+'\')">'+icon('trash')+'</button>')+'</td></tr>';
-    }).join('');
     document.getElementById('view-container').innerHTML =
+      '<div class="toolbar">'+
+      '<input type="text" id="student-search" placeholder="Search by name, class, admission no. or certificate no.…" oninput="onStudentSearchInput(this.value)">'+
+      '</div>'+
+      '<div id="cert-lookup-panel"></div>'+
       '<div class="card card-pad">'+
-      '<div class="section-title">All Students<div class="actions"><button class="btn btn-gold btn-sm" onclick="editStudent()">+ Add Student</button></div></div>'+
-      '<table><thead><tr><th>Name</th><th>Class</th><th>Section</th><th>Admission No.</th><th>Participation</th><th></th></tr></thead><tbody>'+
-      (rows||'<tr><td colspan="6" class="empty-state">No students yet.</td></tr>')+'</tbody></table></div>';
+      '<div class="section-title">All Students<span id="student-count" style="font-weight:500;color:var(--slate);font-size:12.5px;"></span><div class="actions"><button class="btn btn-gold btn-sm" onclick="editStudent()">+ Add Student</button></div></div>'+
+      '<table><thead><tr><th>Name</th><th>Class</th><th>Section</th><th>Admission No.</th><th>Participation</th><th></th></tr></thead><tbody id="students-tbody"></tbody></table></div>';
+    renderStudentRows();
   });
 }
+function renderStudentRows(){
+  var q=studentSearchQ.trim().toLowerCase();
+  var list = STATE.cache.students;
+  if(q){
+    list = list.filter(function(s){
+      return (s.StudentName+' '+s.Class+' '+(s.Section||'')+' '+(s.AdmissionNumber||'')).toLowerCase().indexOf(q)!==-1;
+    });
+  }
+  var rows=list.map(function(s){
+    return '<tr><td><b>'+esc(s.StudentName)+'</b></td><td>'+esc(s.Class)+'</td><td>'+esc(s.Section||'—')+'</td><td>'+esc(s.AdmissionNumber||'—')+'</td>'+
+      '<td><button class="btn btn-ghost btn-sm" onclick="openStudentProfile(\''+s.StudentID+'\')">View Profile</button></td>'+
+      '<td><button class="icon-btn" onclick="editStudent(\''+s.StudentID+'\')">'+icon('edit')+'</button>'+adminOnly('<button class="icon-btn" onclick="removeStudent(\''+s.StudentID+'\')">'+icon('trash')+'</button>')+'</td></tr>';
+  }).join('');
+  document.getElementById('students-tbody').innerHTML = rows || '<tr><td colspan="6" class="empty-state">No students match your search.</td></tr>';
+  var countEl=document.getElementById('student-count');
+  if(countEl) countEl.textContent = q ? (' — '+list.length+' of '+STATE.cache.students.length) : '';
+}
+var studentSearchTimer=null;
+function onStudentSearchInput(val){
+  studentSearchQ=val;
+  renderStudentRows();
+  clearTimeout(studentSearchTimer);
+  var panel=document.getElementById('cert-lookup-panel');
+  if(!val.trim()){ if(panel) panel.innerHTML=''; return; }
+  // A name/class search usually already finds a match in the table above.
+  // If nothing matched locally, the person may have typed a certificate
+  // number instead — check certificates too, after a short pause.
+  var stillMatches = STATE.cache.students.some(function(s){
+    return (s.StudentName+' '+s.Class+' '+(s.Section||'')+' '+(s.AdmissionNumber||'')).toLowerCase().indexOf(val.trim().toLowerCase())!==-1;
+  });
+  if(stillMatches || val.trim().length<3){ if(panel) panel.innerHTML=''; return; }
+  studentSearchTimer=setTimeout(function(){
+    gs('getCertificates',STATE.token,{q:val.trim()}).then(function(r){
+      if(document.getElementById('student-search').value!==val) return; // stale response
+      var matches=(r.certificates||[]).slice(0,5);
+      if(!matches.length){ panel.innerHTML=''; return; }
+      panel.innerHTML = '<div class="card card-pad" style="margin-bottom:16px;background:var(--navy-100);">'+
+        '<div style="font-size:12.5px;font-weight:700;color:var(--navy-800);margin-bottom:8px;">No student matched — found in Certificate History instead:</div>'+
+        matches.map(function(c){
+          var sid=(c.StudentIDs||'').split(',')[0];
+          return '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(21,34,68,.08);">'+
+            '<span><b>'+esc(c.CertificateNumber)+'</b> — '+esc(c.StudentNames)+' · '+esc(c.EventName)+' · '+esc(c.Rank)+'</span>'+
+            (sid?'<button class="btn btn-ghost btn-sm" onclick="openStudentProfile(\''+sid+'\')">View Student</button>':'')+
+            '</div>';
+        }).join('')+'</div>';
+    }).catch(function(){});
+  },400);
+}
+
 function editStudent(id){
   var s = id ? STATE.cache.students.find(function(x){return x.StudentID===id;}) : {StudentName:'',Class:'',Section:'',AdmissionNumber:'',Gender:''};
   openModal(id?'Edit Student':'Add Student',
@@ -997,7 +1078,7 @@ function voidCert(id){
 /* =====================================================================
    VIEW: GENERATE CERTIFICATE (the core workflow)
    ===================================================================== */
-var GEN = { certType:'Individual', studentIds:[], studentNames:[], groupName:'', className:'', category:'', eventId:'', eventName:'', subEvent:'', rank:'', certDate:'', language:'English', achievement:'' };
+var GEN = { certType:'Individual', studentIds:[], studentNames:[], groupName:'', className:'', category:'', eventId:'', eventName:'', subEvent:'', rank:'', certDate:'', language:'English', achievement:'', customTitle:'', customText:'' };
 
 function renderGenerate(){
   GEN = { certType:'Individual', studentIds:[], studentNames:[], groupName:'', className:'', category:'', eventId:'', eventName:'', subEvent:'', rank:'', certDate: todayISO(), language:'English', achievement:'' };
@@ -1056,6 +1137,18 @@ function genFormHTML(){
     '<div class="field"><label>Language</label><select id="g-language" onchange="GEN.language=this.value;updatePreview()"><option>English</option><option>Urdu</option><option>Kannada</option></select></div>'+
     '</div>'+
 
+    '<div class="card card-pad" style="margin-bottom:16px;">'+
+    '<div class="section-title">5. Certificate Wording <span style="font-weight:500;color:var(--slate);font-size:12px;">(optional)</span>'+
+    '<div class="actions"><button type="button" class="btn btn-ghost btn-sm" onclick="toggleWordingPanel()" id="wording-toggle-btn">Customise Text</button></div></div>'+
+    '<div id="wording-panel" class="hidden">'+
+      '<div class="field"><label>Custom Certificate Title</label><input id="g-customtitle" placeholder="Leave blank to use the default title for this category" oninput="GEN.customTitle=this.value;updatePreview()"></div>'+
+      '<div class="field"><label>Certificate Matter</label><textarea id="g-customtext" rows="3" placeholder="Leave blank to use the automatic wording. Or write your own, e.g.: has completed three years of dedicated service to {{school_name}}" oninput="GEN.customText=this.value;updatePreview()"></textarea></div>'+
+      '<div style="font-size:11.5px;color:var(--slate);line-height:1.6;background:var(--navy-100);border-radius:8px;padding:8px 10px;">'+
+      'Available placeholders: <code>{{student_name}}</code> <code>{{event_name}}</code> <code>{{sub_event}}</code> <code>{{rank}}</code> <code>{{date}}</code> <code>{{school_name}}</code> <code>{{headmaster_name}}</code> <code>{{staff_name}}</code> <code>{{designation}}</code> <code>{{certificate_id}}</code>'+
+      '</div>'+
+    '</div>'+
+    '</div>'+
+
     '<div class="dup-warning" id="dup-warning"></div>'+
     '<button class="btn btn-primary btn-block" style="padding:14px;font-size:15px;" onclick="generateCertificateClick()">Generate Certificate</button>'+
   '</div>'+
@@ -1065,6 +1158,12 @@ function genFormHTML(){
     '<div class="cert-outer"><div id="cert-preview"></div></div>'+
   '</div>'+
   '</div>';
+}
+
+function toggleWordingPanel(){
+  var panel=document.getElementById('wording-panel');
+  panel.classList.toggle('hidden');
+  document.getElementById('wording-toggle-btn').textContent = panel.classList.contains('hidden') ? 'Customise Text' : 'Hide';
 }
 
 function setCertType(type){
@@ -1121,12 +1220,12 @@ function onRankChange(val){
 function buildCertificateMarkup(){
   var settings=STATE.settings;
   var category=GEN.category||'Other';
-  var titleText=STATE.categoryTitles[category]||'Certificate of Achievement';
+  var titleText=(GEN.customTitle&&GEN.customTitle.trim())||STATE.categoryTitles[category]||'Certificate of Achievement';
   var rankWord=GEN.rank==='Custom'? (document.getElementById('g-customrank')?document.getElementById('g-customrank').value:'') : (STATE.rankWording[GEN.rank]||GEN.rank||'has achieved');
   var rankDisplay = GEN.rank==='Custom' ? (document.getElementById('g-customrank')?document.getElementById('g-customrank').value:'Achievement') : GEN.rank;
   var isGroup = GEN.certType==='Group';
   var mainName = isGroup ? (GEN.groupName || 'Team') : (GEN.studentNames[0] || 'Student Name');
-  var color = CATEGORY_COLOR[category]||'#b6862c';
+  var color = CATEGORY_COLOR[category]||'#8a6215';
   var ic = CATEGORY_ICON[category]||'star';
   var certDate = GEN.certDate ? fmtDate(GEN.certDate) : fmtDate(new Date());
   var urduClass = GEN.language==='Urdu' ? ' urdu-mode' : '';
@@ -1138,25 +1237,43 @@ function buildCertificateMarkup(){
 
   var eventLine = esc(GEN.subEvent ? (GEN.subEvent+' — '+GEN.eventName) : (GEN.eventName||'the school event'));
 
+  var bodyLine;
+  if(GEN.customText && GEN.customText.trim()){
+    var ctx={student_name:mainName,event_name:GEN.eventName||'',sub_event:GEN.subEvent||'',rank:rankDisplay||'',date:certDate,
+      school_name:settings.school_name||'',headmaster_name:settings.headmaster_name||'',staff_name:STATE.user.name,
+      designation:STATE.user.designation||'',certificate_id:(GEN.previewCertNo||'')};
+    bodyLine = esc(substitutePlaceholdersClient(GEN.customText,ctx));
+  } else {
+    bodyLine = 'who '+esc(rankWord)+' in <b>'+eventLine+'</b>';
+  }
+
   return '' +
-  '<div class="certificate-paper'+urduClass+'" style="--accent:'+color+';">' +
-    '<svg class="c-theme-icon left" viewBox="0 0 24 24">'+ICONS[ic]+'</svg>'+
-    '<svg class="c-theme-icon right" viewBox="0 0 24 24">'+ICONS[ic]+'</svg>'+
-    '<div class="c-border-outer" style="border-color:'+color+';"></div>'+
-    '<div class="c-border-inner"></div>'+
-    '<div class="c-corner tl"></div><div class="c-corner tr"></div><div class="c-corner bl"></div><div class="c-corner br"></div>'+
-    '<div class="c-certno">Certificate No: '+ (GEN.previewCertNo || 'UHPS-'+new Date().getFullYear()+'-XXXX') +'</div>'+
+  '<div class="certificate-paper'+urduClass+'">' +
+    '<svg class="c-watermark" viewBox="0 0 24 24" style="color:'+color+';stroke:currentColor;fill:none;stroke-width:.6;">'+ICONS[ic]+'</svg>'+
+    '<div class="c-vignette"></div>'+
+    '<div class="c-frame-gold"></div>'+
+    '<div class="c-frame-navy" style="border-color:'+color+';"></div>'+
+    '<div class="c-frame-gold2"></div>'+
+    '<div class="c-corner-orn tl">'+CORNER_ORNAMENT_SVG+'</div>'+
+    '<div class="c-corner-orn tr">'+CORNER_ORNAMENT_SVG+'</div>'+
+    '<div class="c-corner-orn bl">'+CORNER_ORNAMENT_SVG+'</div>'+
+    '<div class="c-corner-orn br">'+CORNER_ORNAMENT_SVG+'</div>'+
+    '<div class="c-certno">Certificate No. '+ esc(GEN.previewCertNo || 'UHPS-'+new Date().getFullYear()+'-XXXX') +'</div>'+
+    '<div class="c-verify">Official school certificate</div>'+
     '<div class="c-content">'+
-      '<div class="c-seal-top seal sm" style="background:radial-gradient(circle at 50% 42%,#fff3 0%, '+color+' 70%);"><svg viewBox="0 0 24 24">'+ICONS[ic]+'</svg></div>'+
+      '<div class="c-seal-wrap">'+
+        '<div class="c-seal-flourish">'+SEAL_FLOURISH_SVG+'</div>'+
+        '<div class="c-seal-top" style="background:radial-gradient(circle at 50% 40%,#f0dba0 0%, '+color+' 72%);"><svg viewBox="0 0 24 24">'+ICONS[ic]+'</svg></div>'+
+        '<div class="c-seal-flourish" style="transform:scaleX(-1);">'+SEAL_FLOURISH_SVG+'</div>'+
+      '</div>'+
       '<div class="c-school">'+esc(settings.school_name||'UHPS Shindikurbet')+'</div>'+
       '<div class="c-subtitle">'+esc(settings.school_subtitle||'Government Urdu Medium School')+'</div>'+
-      '<div class="c-rule" style="background:'+color+';"></div>'+
-      '<div class="c-title" style="color:'+color+';">'+esc(titleText)+'</div>'+
-      '<div class="c-body">This certificate is proudly presented to</div>'+
+      '<div class="c-title-row"><div class="diamond" style="background:'+color+';"></div><div class="c-title" style="color:'+color+';">'+esc(titleText)+'</div><div class="diamond" style="background:'+color+';"></div></div>'+
+      '<div class="c-presented">This certificate is proudly presented to</div>'+
       '<div class="c-name">'+esc(mainName)+'</div>'+
       groupListHtml+
-      '<div class="c-body">who '+esc(rankWord)+' in <b>'+eventLine+'</b>'+(isGroup && GEN.className? '':'')+'</div>'+
-      '<div class="c-meta"><span>Rank: <b>'+esc(rankDisplay||'—')+'</b></span><span>Date: <b>'+certDate+'</b></span></div>'+
+      '<div class="c-body">'+bodyLine+'</div>'+
+      '<div class="c-meta"><span>RANK&nbsp; <b>'+esc(rankDisplay||'—')+'</b></span><span>DATE&nbsp; <b>'+certDate+'</b></span></div>'+
     '</div>'+
     '<div class="c-footer">'+
       '<div class="c-sign"><div class="line">'+esc(settings.headmaster_name||'D K Jamadar')+'</div>'+esc(settings.headmaster_designation||'Head Master')+'</div>'+
@@ -1193,9 +1310,10 @@ function generateCertificateClick(){
   if(GEN.certType==='Individual' && !GEN.studentNames[0]){ toast('Please enter or select a student.','bad'); return; }
   if(GEN.certType==='Group' && (!GEN.groupName || !GEN.studentNames.length)){ toast('Please enter a group name and at least one member.','bad'); return; }
   if(!GEN.category || !GEN.eventName){ toast('Please select an event category and event name.','bad'); return; }
-  var rankFinal = GEN.rank==='Custom' ? (document.getElementById('g-customrank').value.trim()) : GEN.rank;
+  var isCustomRank = document.getElementById('g-rank').value==='Custom';
+  var customRankWord = isCustomRank ? document.getElementById('g-customrank').value.trim() : '';
+  var rankFinal = isCustomRank ? customRankWord : GEN.rank;
   if(!rankFinal){ toast('Please select a rank or achievement.','bad'); return; }
-  GEN.rank=rankFinal;
 
   var btn=event.target; btn.disabled=true; btn.textContent='Generating…';
   var payload={
@@ -1208,7 +1326,10 @@ function generateCertificateClick(){
     eventId: GEN.eventId,
     eventName: GEN.eventName,
     subEvent: GEN.subEvent,
-    rank: GEN.rank,
+    rank: isCustomRank ? 'Custom' : rankFinal,
+    customRankWord: customRankWord,
+    customTitle: GEN.customTitle||'',
+    customText: GEN.customText||'',
     certDate: GEN.certDate,
     prefix: STATE.settings.certificate_prefix||'UHPS'
   };
