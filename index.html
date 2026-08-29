@@ -219,51 +219,56 @@ tr:hover td{background:#fafbfd;}
 .cert-outer{background:#dfe4ee;border-radius:12px;padding:22px;display:flex;justify-content:center;overflow:auto;}
 .certificate-paper{
   width:1000px;height:707px;position:relative;flex-shrink:0;
-  font-family:'Inter',sans-serif;
+  font-family:Georgia,serif;
   box-shadow:0 10px 40px rgba(15,26,48,.18);
   overflow:hidden;
-  background-color:#faf7ef;
-  background-image:
-    radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.9) 0%, rgba(250,247,239,0) 62%),
-    repeating-linear-gradient(115deg, rgba(28,43,74,.025) 0px, rgba(28,43,74,.025) 1px, transparent 1px, transparent 7px);
+  background-color:#fdfbf5;
+  background-image:radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.9) 0%, rgba(253,251,245,0) 55%);
 }
-.certificate-paper.urdu-mode .c-body, .certificate-paper.urdu-mode .c-name{direction:rtl;font-family:'Noto Nastaliq Urdu','Inter',sans-serif;}
-.c-vignette{position:absolute;inset:0;box-shadow:inset 0 0 130px rgba(20,20,10,.10);pointer-events:none;}
-.c-frame-gold{position:absolute;inset:14px;border:1px solid #c9a24a;}
-.c-frame-navy{position:absolute;inset:19px;border:2.5px solid var(--navy-800);}
-.c-frame-gold2{position:absolute;inset:25px;border:1px solid #c9a24a;}
-.c-corner-orn{position:absolute;width:64px;height:64px;pointer-events:none;}
+.certificate-paper.urdu-mode .c-description, .certificate-paper.urdu-mode .c-name{direction:rtl;font-family:'Noto Nastaliq Urdu',Georgia,serif;}
+.c-frame-gold{position:absolute;inset:13px;border:1px solid #c9a24a;}
+.c-frame-navy{position:absolute;inset:18px;border:2px solid var(--navy-800);}
+.c-corner-orn{position:absolute;width:70px;height:70px;pointer-events:none;}
 .c-corner-orn svg{width:100%;height:100%;}
-.c-corner-orn.tl{top:10px;left:10px;}
-.c-corner-orn.tr{top:10px;right:10px;transform:scaleX(-1);}
-.c-corner-orn.bl{bottom:10px;left:10px;transform:scaleY(-1);}
-.c-corner-orn.br{bottom:10px;right:10px;transform:scale(-1,-1);}
-.c-watermark{position:absolute;left:50%;top:52%;width:520px;height:520px;transform:translate(-50%,-50%) rotate(-6deg);opacity:.05;pointer-events:none;}
-.c-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:46px 90px 0;}
-.c-seal-wrap{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px;}
-.c-seal-flourish{width:46px;height:14px;opacity:.75;}
-.c-seal-top{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.28), inset 0 0 0 2px rgba(255,255,255,.35);}
-.c-seal-top::before{content:'';position:absolute;inset:5px;border-radius:50%;border:1px dashed rgba(255,255,255,.6);}
-.c-seal-top svg{width:22px;height:22px;stroke:#241705;fill:none;stroke-width:1.6;position:relative;z-index:1;}
-.c-school{font-family:'Playfair Display',serif;font-weight:700;font-size:30px;color:#152244;letter-spacing:1.6px;margin:0;text-transform:uppercase;}
-.c-subtitle{font-size:11.5px;color:#6b7280;letter-spacing:2.4px;text-transform:uppercase;margin:5px 0 16px;}
-.c-title-row{display:flex;align-items:center;gap:14px;margin:0 0 22px;}
-.c-title-row .diamond{width:7px;height:7px;transform:rotate(45deg);flex-shrink:0;}
-.c-title{font-family:'Playfair Display',serif;font-weight:700;font-size:21px;letter-spacing:3.5px;text-transform:uppercase;white-space:nowrap;}
-.c-body{font-size:14.5px;color:#33302a;line-height:1.85;max-width:700px;font-family:Georgia,serif;font-style:italic;}
-.c-presented{font-size:12.5px;color:#8a8375;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px;font-family:'Inter',sans-serif;font-style:normal;}
-.c-name{font-family:'Great Vibes',cursive;font-weight:400;font-size:64px;color:#152244;margin:2px 0 10px;line-height:1.1;padding-bottom:6px;}
-.c-group-list{font-size:13px;color:#33302a;margin:4px 0 10px;column-count:2;column-gap:34px;text-align:left;max-width:460px;font-style:normal;}
+.c-corner-orn.tl{top:8px;left:8px;}
+.c-corner-orn.tr{top:8px;right:8px;transform:scaleX(-1);}
+.c-corner-orn.bl{bottom:8px;left:8px;transform:scaleY(-1);}
+.c-corner-orn.br{bottom:8px;right:8px;transform:scale(-1,-1);}
+.c-watermark{position:absolute;right:-40px;bottom:-30px;width:560px;height:560px;opacity:.07;pointer-events:none;}
+.c-header{position:absolute;top:34px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:12px;}
+.c-emblem{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.25), inset 0 0 0 2px rgba(255,255,255,.4);}
+.c-emblem svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.7;}
+.c-header-text{text-align:left;}
+.c-school{font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:17px;color:#1a1a1a;letter-spacing:.6px;margin:0;text-transform:uppercase;}
+.c-subtitle-line{font-size:9px;color:#8a8375;letter-spacing:2.6px;text-transform:uppercase;margin-top:3px;}
+.c-content{position:absolute;top:96px;left:150px;right:70px;bottom:0;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.c-headline{font-family:'Playfair Display',serif;font-weight:700;font-size:52px;letter-spacing:2px;color:#152244;margin:4px 0 0;line-height:1;}
+.c-headline-row{display:flex;align-items:center;gap:14px;margin:10px 0 22px;}
+.c-headline-row .rule{width:60px;height:1px;background:#c9a24a;}
+.c-headline-sub{font-weight:700;font-size:14px;letter-spacing:5px;color:#b6862c;}
+.c-presented{font-size:12px;color:#5c5750;margin-bottom:6px;}
+.c-name{font-family:'Great Vibes',cursive;font-weight:400;font-size:58px;color:#152244;margin:0 0 10px;line-height:1.05;padding-bottom:4px;border-bottom:1px solid #d8cfa8;padding-left:20px;padding-right:20px;display:inline-block;}
+.c-group-list{font-size:12.5px;color:#33302a;margin:2px 0 8px;column-count:2;column-gap:30px;text-align:left;max-width:420px;font-family:'Inter',sans-serif;}
 .c-group-list div{padding:2px 0;}
-.c-meta{display:flex;gap:30px;margin-top:14px;font-size:11.5px;color:#6b7280;letter-spacing:.3px;}
-.c-meta b{color:#33302a;}
-.c-footer{position:absolute;left:78px;right:78px;bottom:40px;display:flex;justify-content:space-between;align-items:flex-end;font-size:11.5px;}
-.c-sign{text-align:center;min-width:170px;}
+.c-action-line{font-size:13.5px;color:#4a463f;margin:6px 0 4px;}
+.c-action-line b{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:.5px;}
+.c-event-headline{font-family:'Inter',sans-serif;font-weight:800;font-size:24px;letter-spacing:.5px;text-transform:uppercase;margin:2px 0;line-height:1.2;}
+.c-subevent{font-size:10.5px;color:#8a8375;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-family:'Inter',sans-serif;}
+.c-description{font-size:11.5px;color:#6b665c;line-height:1.65;max-width:430px;font-family:'Inter',sans-serif;margin-top:6px;}
+.c-medal{position:absolute;left:44px;top:200px;width:110px;height:150px;}
+.c-ribbon{position:absolute;top:44px;width:24px;height:76px;}
+.c-ribbon.left{left:20px;transform:rotate(-8deg);}
+.c-ribbon.right{left:50px;transform:rotate(8deg);}
+.c-medal-circle{position:absolute;top:0;left:16px;width:72px;height:72px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 3px 8px rgba(0,0,0,.3), inset 0 0 0 3px rgba(255,255,255,.35);}
+.c-medal-circle svg{width:26px;height:26px;stroke:#241705;fill:none;stroke-width:1.7;}
+.c-medal-ord{font-family:'Playfair Display',serif;font-weight:700;font-size:19px;color:#241705;line-height:1;}
+.c-medal-sub{font-size:6.5px;letter-spacing:1px;color:#241705;font-family:'Inter',sans-serif;font-weight:700;margin-top:1px;}
+.c-footer3{position:absolute;left:120px;right:70px;bottom:36px;display:flex;justify-content:space-between;align-items:flex-end;font-size:10.5px;font-family:'Inter',sans-serif;text-align:center;}
+.c-sign{min-width:150px;}
 .c-sign .line{border-top:1px solid #c9a24a;margin-bottom:6px;padding-top:6px;}
-.c-sign b{font-size:12.5px;color:#152244;}
-.c-sdmc{position:absolute;left:78px;right:78px;bottom:14px;text-align:center;font-size:9.5px;color:#9a9488;letter-spacing:.5px;}
-.c-certno{position:absolute;top:24px;right:34px;font-size:9.5px;color:#8a8375;letter-spacing:.3px;}
-.c-verify{position:absolute;top:24px;left:34px;font-size:9px;color:#a8a296;letter-spacing:.2px;}
+.c-sign b{font-size:12px;color:#152244;}
+.c-certno{position:absolute;top:16px;right:24px;font-size:8.5px;color:#a8a296;font-family:'Inter',sans-serif;}
+.c-verify{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:8px;color:#b5afa2;font-family:'Inter',sans-serif;letter-spacing:.3px;}
 
 /* form grids inside cert generator */
 .gen-form .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -466,13 +471,16 @@ var ICONS = {
   atom:'<circle cx="12" cy="12" r="1.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)"/>',
   palette:'<path d="M12 3a9 9 0 100 18c1.4 0 2-.9 2-2s-.6-1.7-.6-2.6c0-1 .8-1.4 1.8-1.4H17a3 3 0 003-3c0-5-4-9-8-9z"/><circle cx="8" cy="10" r="1"/><circle cx="8" cy="14" r="1"/><circle cx="12" cy="8" r="1"/><circle cx="16" cy="10" r="1"/>',
   masks:'<circle cx="9" cy="11" r="5.5"/><circle cx="15" cy="11" r="5.5"/><path d="M6.5 10h1M10.5 10h1M14 10h1M18 10h1M8 13c1 1.2 3 1.2 4 0M14 13c1 1.2 3 1.2 4 0"/>',
-  star:'<path d="M12 3l2.5 5.4 5.9.8-4.3 4.1 1 5.9L12 16.4 6.9 19.2l1-5.9-4.3-4.1 5.9-.8z"/>'
+  star:'<path d="M12 3l2.5 5.4 5.9.8-4.3 4.1 1 5.9L12 16.4 6.9 19.2l1-5.9-4.3-4.1 5.9-.8z"/>',
+  question:'<path d="M9 9a3 3 0 115.5 1.7c-.8.9-1.5 1.3-1.5 2.8" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/>',
+  mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0"/><path d="M12 17v4M9 21h6"/>',
+  quill:'<path d="M19 5c-5 0-10 3-12 9l-2 5 5-2c6-2 9-7 9-12z"/><path d="M9 15l6-6"/>'
 };
 function icon(name,cls){ return '<svg class="'+(cls||'')+'" viewBox="0 0 24 24">'+(ICONS[name]||'')+'</svg>'; }
 
 var CATEGORY_ICON = {
-  Sports:'trophy',Academic:'book',SA:'book',Quiz:'book',Cultural:'masks',Arts:'palette',
-  Drawing:'palette',Essay:'book',Debate:'book',Speech:'masks',Science:'atom',
+  Sports:'trophy',Academic:'book',SA:'book',Quiz:'question',Cultural:'mic',Arts:'palette',
+  Drawing:'palette',Essay:'quill',Debate:'mic',Speech:'mic',Science:'atom',
   Mathematics:'book',Computer:'book','General Achievement':'star',Other:'star'
 };
 var CATEGORY_COLOR = {
@@ -481,17 +489,35 @@ var CATEGORY_COLOR = {
   Science:'#0d4f63',Mathematics:'#1c2b4a',Computer:'#1c2b4a','General Achievement':'#8a6215',Other:'#8a6215'
 };
 var CORNER_ORNAMENT_SVG =
-  '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'+
-  '<path d="M4 30 C4 14 14 4 30 4" stroke="#c9a24a" stroke-width="1.4"/>'+
-  '<path d="M4 22 C4 12 12 4 22 4" stroke="#c9a24a" stroke-width="1"/>'+
-  '<circle cx="4" cy="4" r="3.4" fill="#c9a24a"/>'+
-  '<path d="M12 4c6 0 8 4 8 8M4 12c0 6 4 8 8 8" stroke="#1c2b4a" stroke-width="1"/>'+
+  '<svg viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+  '<path d="M4 34 C4 16 16 4 34 4" stroke="#c9a24a" stroke-width="1.6"/>'+
+  '<path d="M4 24 C4 13 13 4 24 4" stroke="#c9a24a" stroke-width="1"/>'+
+  '<path d="M4 44 C4 20 20 4 44 4" stroke="#c9a24a" stroke-width=".7"/>'+
+  '<circle cx="4" cy="4" r="4" fill="#c9a24a"/>'+
+  '<circle cx="34" cy="4" r="2" fill="#c9a24a"/>'+
+  '<circle cx="4" cy="34" r="2" fill="#c9a24a"/>'+
   '</svg>';
-var SEAL_FLOURISH_SVG =
-  '<svg viewBox="0 0 46 14" fill="none" xmlns="http://www.w3.org/2000/svg">'+
-  '<path d="M2 7c10-8 24-8 30 0M2 7c10 8 24 8 30 0" stroke="#c9a24a" stroke-width="1"/>'+
-  '<circle cx="34" cy="7" r="1.6" fill="#c9a24a"/>'+
-  '</svg>';
+var ACTION_PHRASE = {
+  'First Prize':{pre:'for securing',rank:'FIRST PRIZE'}, 'Second Prize':{pre:'for securing',rank:'SECOND PRIZE'},
+  'Third Prize':{pre:'for securing',rank:'THIRD PRIZE'}, 'Winner':{pre:'for emerging as',rank:'WINNER'},
+  'Runner-Up':{pre:'for securing the position of',rank:'RUNNER-UP'}, 'Champion':{pre:'for being crowned',rank:'CHAMPION'},
+  'Best Performer':{pre:'for being recognised as',rank:'BEST PERFORMER'}, 'Participation':{pre:'for participating',rank:''},
+  'Excellence Award':{pre:'for receiving the',rank:'EXCELLENCE AWARD'}, 'Special Achievement':{pre:'for demonstrating',rank:'SPECIAL ACHIEVEMENT'}
+};
+var RANK_DESCRIPTION_CLIENT = {
+  'First Prize':'in recognition of outstanding performance, dedication and excellence. Keep striving for greatness!',
+  'Second Prize':'in recognition of great effort, consistency and skill shown throughout the competition. Well done!',
+  'Third Prize':'in recognition of commendable effort and dedication throughout the competition. Keep it up!',
+  'Winner':'in recognition of outstanding performance and dedication. Keep striving for excellence!',
+  'Runner-Up':'in recognition of excellent effort and skill shown throughout the competition. Well done!',
+  'Champion':'in recognition of exceptional performance, discipline and determination. Congratulations!',
+  'Best Performer':'in recognition of exceptional talent, hard work and commitment. Well done!',
+  'Participation':'Your enthusiasm, active participation and team spirit made the event a grand success. Keep it up!',
+  'Excellence Award':'in recognition of exceptional talent, hard work and commitment. Well done!',
+  'Special Achievement':'in recognition of outstanding achievement and dedication. Congratulations!'
+};
+var ORDINAL_BADGE = {'First Prize':'1ST','Second Prize':'2ND','Third Prize':'3RD'};
+var DEFAULT_SUBTITLE = {'Participation':'OF PARTICIPATION','Excellence Award':'OF EXCELLENCE'};
 function substitutePlaceholdersClient(text, ctx){
   return String(text||'').replace(/\{\{\s*([a-zA-Z_]+)\s*\}\}/g,function(m,key){ return ctx.hasOwnProperty(key)?ctx[key]:m; });
 }
@@ -1220,66 +1246,75 @@ function onRankChange(val){
 function buildCertificateMarkup(){
   var settings=STATE.settings;
   var category=GEN.category||'Other';
-  var titleText=(GEN.customTitle&&GEN.customTitle.trim())||STATE.categoryTitles[category]||'Certificate of Achievement';
-  var rankWord=GEN.rank==='Custom'? (document.getElementById('g-customrank')?document.getElementById('g-customrank').value:'') : (STATE.rankWording[GEN.rank]||GEN.rank||'has achieved');
-  var rankDisplay = GEN.rank==='Custom' ? (document.getElementById('g-customrank')?document.getElementById('g-customrank').value:'Achievement') : GEN.rank;
+  var subtitle=(GEN.customTitle&&GEN.customTitle.trim())||DEFAULT_SUBTITLE[GEN.rank]||'OF ACHIEVEMENT';
+  var isCustomRank = document.getElementById('g-rank') ? document.getElementById('g-rank').value==='Custom' : false;
+  var customRankTyped = document.getElementById('g-customrank') ? document.getElementById('g-customrank').value.trim() : '';
+  var action = isCustomRank ? {pre:'for securing',rank:(customRankTyped||'ACHIEVEMENT').toUpperCase()} : (ACTION_PHRASE[GEN.rank]||{pre:'for achieving',rank:(GEN.rank||'').toUpperCase()});
+  var rankDisplay = isCustomRank ? (customRankTyped||'Achievement') : GEN.rank;
   var isGroup = GEN.certType==='Group';
   var mainName = isGroup ? (GEN.groupName || 'Team') : (GEN.studentNames[0] || 'Student Name');
   var color = CATEGORY_COLOR[category]||'#8a6215';
   var ic = CATEGORY_ICON[category]||'star';
   var certDate = GEN.certDate ? fmtDate(GEN.certDate) : fmtDate(new Date());
   var urduClass = GEN.language==='Urdu' ? ' urdu-mode' : '';
+  var ordinal = ORDINAL_BADGE[GEN.rank];
 
   var groupListHtml='';
   if(isGroup && GEN.studentNames.length){
     groupListHtml = '<div class="c-group-list">'+GEN.studentNames.map(function(n,i){return '<div>'+(i+1)+'. '+esc(n)+'</div>';}).join('')+'</div>';
   }
 
-  var eventLine = esc(GEN.subEvent ? (GEN.subEvent+' — '+GEN.eventName) : (GEN.eventName||'the school event'));
+  var actionLine = action.rank ? action.pre+' <b style="color:'+color+';">'+esc(action.rank)+'</b> in the' : action.pre+' in the';
 
-  var bodyLine;
+  var descText;
   if(GEN.customText && GEN.customText.trim()){
     var ctx={student_name:mainName,event_name:GEN.eventName||'',sub_event:GEN.subEvent||'',rank:rankDisplay||'',date:certDate,
       school_name:settings.school_name||'',headmaster_name:settings.headmaster_name||'',staff_name:STATE.user.name,
       designation:STATE.user.designation||'',certificate_id:(GEN.previewCertNo||'')};
-    bodyLine = esc(substitutePlaceholdersClient(GEN.customText,ctx));
+    descText = esc(substitutePlaceholdersClient(GEN.customText,ctx));
   } else {
-    bodyLine = 'who '+esc(rankWord)+' in <b>'+eventLine+'</b>';
+    descText = esc(RANK_DESCRIPTION_CLIENT[GEN.rank]||'in recognition of outstanding effort and achievement.');
   }
+
+  var medalInner = ordinal ? '<div class="c-medal-ord">'+ordinal+'</div><div class="c-medal-sub">PLACE</div>' : '<svg viewBox="0 0 24 24">'+ICONS[ic]+'</svg>';
 
   return '' +
   '<div class="certificate-paper'+urduClass+'">' +
-    '<svg class="c-watermark" viewBox="0 0 24 24" style="color:'+color+';stroke:currentColor;fill:none;stroke-width:.6;">'+ICONS[ic]+'</svg>'+
-    '<div class="c-vignette"></div>'+
+    '<svg class="c-watermark" viewBox="0 0 24 24" style="color:'+color+';fill:currentColor;stroke:none;">'+ICONS[ic].replace(/stroke-width="[^"]*"/g,'')+'</svg>'+
     '<div class="c-frame-gold"></div>'+
     '<div class="c-frame-navy" style="border-color:'+color+';"></div>'+
-    '<div class="c-frame-gold2"></div>'+
     '<div class="c-corner-orn tl">'+CORNER_ORNAMENT_SVG+'</div>'+
     '<div class="c-corner-orn tr">'+CORNER_ORNAMENT_SVG+'</div>'+
     '<div class="c-corner-orn bl">'+CORNER_ORNAMENT_SVG+'</div>'+
     '<div class="c-corner-orn br">'+CORNER_ORNAMENT_SVG+'</div>'+
-    '<div class="c-certno">Certificate No. '+ esc(GEN.previewCertNo || 'UHPS-'+new Date().getFullYear()+'-XXXX') +'</div>'+
-    '<div class="c-verify">Official school certificate</div>'+
+    '<div class="c-certno">Cert. No. '+ esc(GEN.previewCertNo || 'UHPS-'+new Date().getFullYear()+'-XXXX') +'</div>'+
+    '<div class="c-header">'+
+      '<div class="c-emblem" style="background:radial-gradient(circle at 35% 30%,'+color+' 0%,#0d1a30 85%);"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6l7-3z"/></svg></div>'+
+      '<div class="c-header-text"><div class="c-school">'+esc(settings.school_name||'UHPS Shindikurbet')+'</div>'+
+      '<div class="c-subtitle-line">'+esc(settings.school_subtitle||'Government Urdu Medium School')+'</div></div>'+
+    '</div>'+
+    '<div class="c-medal">'+
+      '<div class="c-ribbon left" style="background:'+color+';clip-path:polygon(0 0,100% 0,100% 82%,50% 100%,0 82%);"></div>'+
+      '<div class="c-ribbon right" style="background:'+color+';clip-path:polygon(0 0,100% 0,100% 82%,50% 100%,0 82%);"></div>'+
+      '<div class="c-medal-circle" style="background:radial-gradient(circle at 35% 30%,#f3dfa3 0%,'+color+' 80%);">'+medalInner+'</div>'+
+    '</div>'+
     '<div class="c-content">'+
-      '<div class="c-seal-wrap">'+
-        '<div class="c-seal-flourish">'+SEAL_FLOURISH_SVG+'</div>'+
-        '<div class="c-seal-top" style="background:radial-gradient(circle at 50% 40%,#f0dba0 0%, '+color+' 72%);"><svg viewBox="0 0 24 24">'+ICONS[ic]+'</svg></div>'+
-        '<div class="c-seal-flourish" style="transform:scaleX(-1);">'+SEAL_FLOURISH_SVG+'</div>'+
-      '</div>'+
-      '<div class="c-school">'+esc(settings.school_name||'UHPS Shindikurbet')+'</div>'+
-      '<div class="c-subtitle">'+esc(settings.school_subtitle||'Government Urdu Medium School')+'</div>'+
-      '<div class="c-title-row"><div class="diamond" style="background:'+color+';"></div><div class="c-title" style="color:'+color+';">'+esc(titleText)+'</div><div class="diamond" style="background:'+color+';"></div></div>'+
+      '<div class="c-headline">CERTIFICATE</div>'+
+      '<div class="c-headline-row"><div class="rule"></div><div class="c-headline-sub">'+esc(subtitle)+'</div><div class="rule"></div></div>'+
       '<div class="c-presented">This certificate is proudly presented to</div>'+
       '<div class="c-name">'+esc(mainName)+'</div>'+
       groupListHtml+
-      '<div class="c-body">'+bodyLine+'</div>'+
-      '<div class="c-meta"><span>RANK&nbsp; <b>'+esc(rankDisplay||'—')+'</b></span><span>DATE&nbsp; <b>'+certDate+'</b></span></div>'+
+      '<div class="c-action-line">'+actionLine+'</div>'+
+      '<div class="c-event-headline" style="color:'+color+';">'+esc(GEN.eventName||'School Event')+'</div>'+
+      (GEN.subEvent? '<div class="c-subevent">'+esc(GEN.subEvent)+'</div>':'')+
+      '<div class="c-description">'+descText+'</div>'+
     '</div>'+
-    '<div class="c-footer">'+
+    '<div class="c-footer3">'+
       '<div class="c-sign"><div class="line">'+esc(settings.headmaster_name||'D K Jamadar')+'</div>'+esc(settings.headmaster_designation||'Head Master')+'</div>'+
+      '<div class="c-sign"><div class="line">'+certDate+'</div>Date</div>'+
       '<div class="c-sign"><div class="line">'+esc(STATE.user.name)+'</div>'+esc(STATE.user.designation||'Issuing Staff')+'</div>'+
     '</div>'+
-    '<div class="c-sdmc">SDMC Committee — endorsed under the school development &amp; monitoring committee</div>'+
+    '<div class="c-verify">Official school certificate</div>'+
   '</div>';
 }
 
